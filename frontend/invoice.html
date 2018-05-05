@@ -1,0 +1,85 @@
+
+
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <script src="script.js"></script>
+      <style>
+        .modal {
+                display: none; 
+                position: fixed; 
+                z-index: 2; 
+                padding-top: 100px; 
+                left: 10px;
+                top: 0;
+                width: 100%; 
+                height: 100%; 
+                overflow: auto; 
+                background-color: rgb(0,0,0);
+                background-color: rgba(0, 0, 0, 0.3) 
+                
+                }
+        .modal-content {
+                background-color: #fefefe;
+                margin: auto;
+                padding: 20px;
+                border: 1px solid #888;
+                width: 80%;
+                }
+
+      </style>
+   </head>
+   <body>
+      <div class="container" style="padding:20px;">
+
+        <h2 align="center" style="margin-bottom:10px;">Create Invoice</h2>
+         <div class="row" style="border : 1px solid;padding: 10px;">
+                <div class="col-sm-6">
+            
+               <input autocomplete="off" type="input" class="form-control input-lg" id="txt-search" placeholder="Type your search character">
+               <div  id="filter-records" style="position:fixed; background-color:gray; z-index:1; " ></div>
+                </div>
+                <div  class="col-sm-6" style="border-left: 1px solid;overflow:auto;">
+                        <div class='col-sm-6'>  <input type="input" id="nameField" class="form-control"  placeholder="Name"></div>
+                        <div class='col-sm-6'>  <input type="input" id="mobField" class="form-control"  placeholder="Mob No."></div>
+                                <div style="height: 400px;" id="shopItems">
+                                <table class="table striped-table">
+                                   <thead>
+                                      <th>Name</th>
+                                      <th>Price(per unit)</th>
+                                      <th>1 unit</th>
+                                      <th>No. of units</th>
+                                      <th>Price</th>
+                                   </thead>
+                                   <tbody  id="selected-objects">
+                                   </tbody>
+                                </table>
+                        </div>
+                        <div class="footer" style="text-align: center">
+                                <button  class="btn btn-primary" onclick="send()">Submit</button>
+                        </div>
+                </div>
+         </div>
+
+<div class="modal" id="invoiceModal" >
+        <div id="invoice" class="modal-content">
+        <div class="col-sm-6">
+                      <h4>  Invoive Id: </h4> <h5 id="invoiceId"></h5>
+        </div>
+        
+        <div class="col-sm-6">
+               <h4> Total Amount: </h4><h5 id="totAmt"></h5>
+        </div>
+        </hr>
+                
+        </div>  
+</div>
+      
+   </body>
+</html>
+

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+        <div class="container">
+                <div class="card card-container">
+                    <img id="profile-img" class="profile-img-card" src="myAvatar.png" />
+                    <p id="profile-name" class="profile-name-card"></p>
+                    <form class="form-signin" action="" role="form">
+                        <span id="reauth-email" class="reauth-email"></span>
+                        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                       
+                    </form>
+                    <button class="btn btn-lg btn-primary btn-block btn-signin" onclick="verify()">Sign in</button>
+                    
+                </div>
+            </div>
+<script type="text/javascript">
+    if (localStorage.getItem("isLogin")=="true"){
+        window.location.assign("index.html");
+    }
+    function verify(){
+        $.post(
+            'http://127.0.0.1:8000/api/verify',
+            {
+                'inputEmail':$('#inputEmail').val(),
+                'inputPassword':$('#inputPassword').val()
+            },
+            function(data,status){
+                if (data.isLogin){
+                    localStorage.setItem('authToken',data.authToken);
+                    localStorage.setItem('isLogin','true');
+                    window.location.assign("index.html");
+                }
+                else{
+                    alert("Entered Credentials are incorrect. Pls Try again.");
+                    $('#inputEmail').val('')
+                    $('#inputPassword').val('');
+
+                }
+            }
+
+        );
+    }
+    
+
+</script>
+</body>
+</html>
